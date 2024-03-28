@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://0rlkkq7ok1re"]
+
+[ext_resource type="PackedScene" uid="uid://bidqxix4hdwj4" path="res://Scenes/Enemies/enemy.tscn" id="1_ubei2"]
+[ext_resource type="Texture2D" uid="uid://devc6nihu6bld" path="res://resources/galaxy_defiance_resources/assets/RedShip.png" id="2_my7ek"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_brlcc"]
+atlas = ExtResource("2_my7ek")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kdks1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_brlcc")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xo0f3"]
+radius = 10.5837
+height = 27.8689
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ext18"]
+radius = 8.18846
+height = 22.2146
+
+[node name="RedEnemy" instance=ExtResource("1_ubei2")]
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+rotation = -3.14251
+sprite_frames = SubResource("SpriteFrames_kdks1")
+animation = &"move"
+autoplay = "move"
+
+[node name="StatsComponent" parent="." index="1"]
+health = 10
+
+[node name="MoveComponent" parent="." index="2"]
+velocity = Vector2(0, 10)
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="3"]
+position = Vector2(-7.15256e-07, -1.5468)
+scale = Vector2(1.46846, 1.25191)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
+position = Vector2(0.353554, -1.41422)
+rotation = -1.58124
+shape = SubResource("CapsuleShape2D_xo0f3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+position = Vector2(-3.8147e-06, -1.32583)
+rotation = -1.56983
+shape = SubResource("CapsuleShape2D_ext18")
+debug_color = Color(0.981477, 0.00480359, 0.370756, 0.203922)
+
+[node name="ScoreComponent" parent="." index="12"]
+adjust_amount = 20

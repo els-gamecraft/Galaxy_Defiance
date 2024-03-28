@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://bw6fvkkduiine"]
+
+[ext_resource type="PackedScene" uid="uid://bidqxix4hdwj4" path="res://Scenes/Enemies/enemy.tscn" id="1_mhljr"]
+[ext_resource type="Texture2D" uid="uid://ct2diiwgd6n3i" path="res://resources/galaxy_defiance_resources/assets/BlueShip.png" id="2_bgh36"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mtj8e"]
+atlas = ExtResource("2_bgh36")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ccpbb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mtj8e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6i4kg"]
+radius = 11.6304
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q0bit"]
+radius = 7.86339
+height = 20.9755
+
+[node name="BlueSilverEnemy" instance=ExtResource("1_mhljr")]
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+rotation = -3.13536
+sprite_frames = SubResource("SpriteFrames_ccpbb")
+
+[node name="MoveComponent" parent="." index="2"]
+velocity = Vector2(0, 70)
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="3"]
+position = Vector2(-0.0625, -0.375)
+scale = Vector2(1.48125, 1.1375)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
+position = Vector2(0.0992126, -0.0992126)
+rotation = -1.55964
+shape = SubResource("CapsuleShape2D_6i4kg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+rotation = -1.56723
+shape = SubResource("CapsuleShape2D_q0bit")
+debug_color = Color(0.981477, 0.00480359, 0.370756, 0.203922)

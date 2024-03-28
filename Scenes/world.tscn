@@ -1,8 +1,31 @@
-[gd_scene load_steps=2 format=3 uid="uid://dks3bmsvhp85t"]
+[gd_scene load_steps=8 format=3 uid="uid://dks3bmsvhp85t"]
 
 [ext_resource type="PackedScene" uid="uid://bni0u3a1kxw0" path="res://player_ship/ship.tscn" id="1_0qij6"]
+[ext_resource type="Script" path="res://Scenes/world.gd" id="1_d5peo"]
+[ext_resource type="AudioStream" uid="uid://h6jvq6sik6b7" path="res://resources/galaxy_defiance_resources/sounds/music.ogg" id="2_5rgmi"]
+[ext_resource type="Resource" uid="uid://1kjajnan7vwq" path="res://game_stats.tres" id="2_e7ht8"]
+[ext_resource type="PackedScene" uid="uid://dtbbiooo0eift" path="res://effects/space_background.tscn" id="3_sxeye"]
+[ext_resource type="PackedScene" uid="uid://caj6n15r8e4rk" path="res://Scenes/Enemies/enemy_generator.tscn" id="4_ds08k"]
+[ext_resource type="LabelSettings" uid="uid://d24cnssgv740a" path="res://resources/galaxy_defiance_resources/fonts/default_label_settings.tres" id="6_qtn8u"]
 
 [node name="World" type="Node2D"]
+script = ExtResource("1_d5peo")
+game_stats = ExtResource("2_e7ht8")
 
 [node name="Ship" parent="." instance=ExtResource("1_0qij6")]
 position = Vector2(80, 216)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_5rgmi")
+
+[node name="SpaceBackground" parent="." instance=ExtResource("3_sxeye")]
+
+[node name="EnemyGenerator" parent="." instance=ExtResource("4_ds08k")]
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_right = 160.0
+offset_bottom = 23.0
+text = "SCORE"
+label_settings = ExtResource("6_qtn8u")
+horizontal_alignment = 1
+vertical_alignment = 1

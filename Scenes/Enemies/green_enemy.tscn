@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://cs8b8dw0uvhll"]
+
+[ext_resource type="PackedScene" uid="uid://bidqxix4hdwj4" path="res://Scenes/Enemies/enemy.tscn" id="1_ykycq"]
+[ext_resource type="Texture2D" uid="uid://d3cjt5dsipr7m" path="res://resources/galaxy_defiance_resources/assets/ship-0 (2).png" id="2_6lln4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkd2d"]
+atlas = ExtResource("2_6lln4")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wku1x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkd2d")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_njjc1"]
+radius = 12.4748
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s7l6j"]
+radius = 11.2982
+
+[node name="GreenEnemy" instance=ExtResource("1_ykycq")]
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+position = Vector2(9.53674e-07, -4.76837e-07)
+rotation = -3.13538
+sprite_frames = SubResource("SpriteFrames_wku1x")
+animation = &"move"
+autoplay = "move"
+frame_progress = 0.42756
+
+[node name="StatsComponent" parent="." index="1"]
+health = 5
+
+[node name="MoveComponent" parent="." index="2"]
+velocity = Vector2(0, 40)
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="3"]
+position = Vector2(0.0781247, -0.875583)
+scale = Vector2(0.957812, 0.803183)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
+position = Vector2(-0.0469456, -0.458706)
+rotation = -1.55736
+shape = SubResource("CircleShape2D_njjc1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+position = Vector2(0.0463963, -0.474812)
+rotation = -1.56821
+shape = SubResource("CircleShape2D_s7l6j")
+debug_color = Color(0.981477, 0.00480359, 0.370756, 0.203922)
