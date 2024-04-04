@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bni0u3a1kxw0"]
+[gd_scene load_steps=31 format=3 uid="uid://bni0u3a1kxw0"]
 
 [ext_resource type="Script" path="res://player_ship/ship.gd" id="1_5venp"]
 [ext_resource type="Texture2D" uid="uid://cniv5khqx0blg" path="res://resources/galaxy_defiance_resources/assets/ship.png" id="1_43b33"]
@@ -15,6 +15,8 @@
 [ext_resource type="Script" path="res://resources/galaxy_defiance_resources/components/hurt_component.gd" id="13_cgukl"]
 [ext_resource type="Script" path="res://resources/galaxy_defiance_resources/components/destroyed_component.gd" id="14_puea6"]
 [ext_resource type="PackedScene" uid="uid://roqw2dygvl0n" path="res://effects/explosion_effect.tscn" id="14_uwkf3"]
+[ext_resource type="Script" path="res://resources/galaxy_defiance_resources/components/variable_pitch_audio_stream_player.gd" id="16_8nx7u"]
+[ext_resource type="AudioStream" uid="uid://b8b45nx2hrk47" path="res://resources/galaxy_defiance_resources/sounds/BassLaserSound.wav" id="16_uiviq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tapg4"]
 atlas = ExtResource("10_mmrid")
@@ -212,3 +214,9 @@ script = ExtResource("14_puea6")
 actor = NodePath("..")
 stats_component = NodePath("../StatsComponent")
 destroy_effect_spawner_component = NodePath("../ExplosionSpawnerComponent")
+
+[node name="VariablePitchAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_uiviq")
+volume_db = 5.0
+bus = &"Sounds"
+script = ExtResource("16_8nx7u")

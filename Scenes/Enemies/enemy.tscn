@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bidqxix4hdwj4"]
+[gd_scene load_steps=17 format=3 uid="uid://bidqxix4hdwj4"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/enemy.gd" id="1_inatn"]
 [ext_resource type="Script" path="res://resources/galaxy_defiance_resources/components/move_component.gd" id="1_j3igu"]
@@ -14,6 +14,8 @@
 [ext_resource type="Script" path="res://resources/galaxy_defiance_resources/components/destroyed_component.gd" id="12_jkx6s"]
 [ext_resource type="Script" path="res://resources/galaxy_defiance_resources/components/score_component.gd" id="13_aupxl"]
 [ext_resource type="Resource" uid="uid://1kjajnan7vwq" path="res://game_stats.tres" id="14_yjthn"]
+[ext_resource type="AudioStream" uid="uid://builkwp1jvaxi" path="res://resources/galaxy_defiance_resources/sounds/hit_sound.wav" id="15_wxpm7"]
+[ext_resource type="Script" path="res://resources/galaxy_defiance_resources/components/variable_pitch_audio_stream_player.gd" id="16_6bepe"]
 
 [node name="Enemy" type="Node2D"]
 script = ExtResource("1_inatn")
@@ -68,3 +70,9 @@ destroy_effect_spawner_component = NodePath("../SpawnerComponent")
 [node name="ScoreComponent" type="Node" parent="."]
 script = ExtResource("13_aupxl")
 game_stats = ExtResource("14_yjthn")
+
+[node name="VariablePitchAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_wxpm7")
+volume_db = -5.0
+bus = &"Sounds"
+script = ExtResource("16_6bepe")

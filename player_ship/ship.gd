@@ -9,6 +9,7 @@ extends Node2D
 @onready var move_component: MoveComponent = $MoveComponent
 @onready var flame_animated_sprite: AnimatedSprite2D = %FlameAnimatedSprite
 @onready var flame_animated_sprite_2: AnimatedSprite2D = %FlameAnimatedSprite2
+@onready var variable_pitch_audio_stream_player: VariablePitchAudioStreamPlayer = $VariablePitchAudioStreamPlayer
 
 @export var laser_duration: int = 0.1
 
@@ -16,6 +17,7 @@ func _ready() -> void:
 	fire_rate_timer.timeout.connect(fire_lasers)
 
 func fire_lasers() -> void:
+	variable_pitch_audio_stream_player.play_with_variance()
 	spawner_component.spawn(left_muzzle.global_position)
 	var timer = Timer.new() # Create a new Timer instance each time
 	add_child(timer)
